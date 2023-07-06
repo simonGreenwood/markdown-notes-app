@@ -12,8 +12,10 @@ export const errorHandler = (
     error.message === "Incorrect or missing content"
   ) {
     return response.status(400).json({ error: error.message });
-  }
+  } else if (error.message === "Note not found") {
+    return response.status(404).json({ error: error.message });
+  }  else if (error.message.startsWith("Invalid `prisma.note.update` invocation")) {
 
-  console.error(error.message);
+  console.log(error.name, error.message);
   next();
 };

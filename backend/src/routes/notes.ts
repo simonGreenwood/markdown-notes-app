@@ -6,26 +6,37 @@ import { parseContent, parseUUID } from "../utils/validators";
 import "express-async-errors";
 const prisma = new PrismaClient();
 
-router.get("/", (req, res) => {
-  const notes = prisma.note.findMany();
-  res.send(notes);
+router.get("/", async (req, res) => {
+  const notes = await prisma.note.findMany();
+  res.json(notes);
 });
 
-router.post("/", (req, res) => {
+router.get("/:id", async (req, res) => {
+  const id = parseUUID(req.params.id);
+  const note = await prisma.note.findUnique({
+    where: {
+      id,
+    },
+  });
+  if (!note) {
+    throw new Error("Note not found");
+  }
+  return res.json(note);
+});
+router.post("/", async (req, res) => {
   const content = parseContent(req.body.content);
-  console.log(content);
-  const note = prisma.note.create({
+  const note = await prisma.note.create({
     data: {
       content,
     },
   });
-  return res.send(note);
+  return res.json(note);
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   const content = parseContent(req.body.content);
   const id = parseUUID(req.params.id);
-  const note = prisma.note.update({
+  const note = await prisma.note.update({
     where: {
       id,
     },
@@ -39,9 +50,9 @@ router.put("/:id", (req, res) => {
   return res.send(note).status(204);
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const id = req.params.id;
-  const note = prisma.note.delete({
+  const note = await prisma.note.delete({
     where: {
       id,
     },
@@ -49,6 +60,6 @@ router.delete("/:id", (req, res) => {
   if (!note) {
     return res.status(404).send("Note not found");
   }
-  return res.send(note).status(204);
+  return res.status(204).send(note);
 });
 export default router;
