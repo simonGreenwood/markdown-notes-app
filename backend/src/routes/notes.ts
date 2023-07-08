@@ -44,6 +44,7 @@ router.put("/:id", async (req, res) => {
       content,
     },
   });
+  console.log(note);
   if (!note) {
     return res.status(404).send("Note not found");
   }
