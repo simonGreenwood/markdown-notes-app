@@ -2,7 +2,7 @@ import Image from "next/image";
 export default function Navbar() {
   return (
     <div>
-      <div className="px-3 hover:bg-gray-300 rounded-xl inline-block">
+      <div className="px-3 py-1 hover:bg-gray-300 rounded-xl inline-block">
         <Image
           className=""
           src="./delete.svg"
@@ -11,7 +11,7 @@ export default function Navbar() {
           height="32"
         />
       </div>
-      <div className="px-3 hover:bg-gray-300 rounded-xl inline-block">
+      <div className="px-3 py-1 hover:bg-gray-300 rounded-xl inline-block">
         <Image
           className=""
           src="./edit.svg"
@@ -20,7 +20,7 @@ export default function Navbar() {
           height="32"
         />
       </div>
-      <div className="px-3 hover:bg-gray-300 rounded-xl inline-block">
+      <div className="px-3 py-1 hover:bg-gray-300 rounded-xl inline-block">
         <Image
           className=""
           src="./save.svg"
@@ -29,7 +29,7 @@ export default function Navbar() {
           height="32"
         />
       </div>
-      <div className="px-3 hover:bg-gray-300 rounded-xl inline-block">
+      <div className="px-3 py-1 hover:bg-gray-300 rounded-xl inline-block">
         <Image
           className=""
           src="./share.svg"
@@ -38,7 +38,7 @@ export default function Navbar() {
           height="32"
         />
       </div>
-      <div className="px-3 hover:bg-gray-300 rounded-xl inline-block">
+      <div className="px-3 py-1 hover:bg-gray-300 rounded-xl inline-block">
         <Image
           className=""
           src="./copy.svg"
