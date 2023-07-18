@@ -4,3 +4,8 @@ export type Note = {
   createdAt: string;
   updatedAt: string;
 };
+
+export interface RawState {
+  raw: boolean;
+  toggleRaw: () => void;
+}
